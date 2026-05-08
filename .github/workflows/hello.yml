@@ -1,9 +1,9 @@
 name: Schedule
-on:
-  schedule:
-    - cron: "*/5 * * * *"
+on: push
 jobs:
-  run:
+  print:
     runs-on: windows-latest
+    env:
+      USERNAME: ${{ vars.USERNAME }}
     steps:
-      - run: date
+      - run: echo "&{{USERNAME}}"
