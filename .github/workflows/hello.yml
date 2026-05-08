@@ -1,14 +1,9 @@
-name: Hello
+name: Schedule
 on:
-  workflow_dispatch:
-    inputs:
-      greeting:
-        type: string
-        default: Hello
-        required: true
-        description: A cheerful word
+  schedule:
+    -cron: "/3 * * * *"
 jobs:
-  hello:
+  run:
     runs-on: windows-latest
     steps:
-      - run: echo "${{ inputs.greeting}}"
+      - run: date
