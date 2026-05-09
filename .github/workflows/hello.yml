@@ -1,13 +1,11 @@
-name: Literals
+name: Compare functions
 on: push
 jobs:
   print:
     runs-on: windows-latest
     steps:
-      - run: printenv | grep 'LITERAL_'
+      - run: printenv | grep '_FUNC'
         env:
-          Literal_NULL: ${{ null }}
-          LITERAL_BOOLEAN: ${{ true }}
-          LITERAL_NUMBER: ${{ 1234 }}
-          LITERAL_STRING: ${{ 'HELLO' }}
-          LITERAL_OMIT_STRING: World
+          CONTAINS_FUNC: ${{ contains('Hello', 'ell') }}
+          STARTS_WITH_FUNC: ${{ startsWith('Hello', 'He') }}
+          ENDS_WITH_FUNC: ${{ endsWith('Hello', 'lo') }}
