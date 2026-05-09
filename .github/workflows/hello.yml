@@ -1,13 +1,14 @@
-name: GITHUB_OUTPUT
+name: Comment
 run-name: Run by @${{github.actor}}
-on: push
+on: pull_request
 jobs:
-  share:
+  comment:
     runs-on: windows-latest
+    permissions:
+      pull-requests: write
+      contents: read
     steps:
-      - name: github output
-        id: source
-        run: echo "result=Hello">>"${GITHUB_OUTPUT}"
+      - uses: actions/checkout@v4
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
       - env:
-          RESULT: ${{steps.source.outputs.result}}
-        run: echo "${RESULT}"
+          GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
