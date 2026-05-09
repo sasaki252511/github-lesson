@@ -11,9 +11,11 @@ jobs:
       - run: sleep 10 && echo "First job"
   second:
     runs-on: windows-latest
+    needs: [first]
     steps:
       - run: sleep 10 && echo "Second job"
   third:
     runs-on: windows-latest
+    needs: [second]
     steps:
       - run: sleep 10 && echo "Third job"
