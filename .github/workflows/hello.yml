@@ -1,21 +1,14 @@
-name: Comment
-run-name: Run by @${{github.actor}}
-on: pull_request
-defaults:
-  run:
-    shell: bash
+name: Multi-dimension matrix
+on: push
 jobs:
-  first:
-    runs-on: windows-latest
+  print:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        version: [18, 20]
+    runs-on: ${{matrix.os}}
     steps:
-      - run: sleep 10 && echo "First job"
-  second:
-    runs-on: windows-latest
-    needs: [first]
-    steps:
-      - run: sleep 10 && echo "Second job"
-  third:
-    runs-on: windows-latest
-    needs: [second]
-    steps:
-      - run: sleep 10 && echo "Third job"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.version}}
+      - run: echo "${RUNNER_OS}" && node --version
