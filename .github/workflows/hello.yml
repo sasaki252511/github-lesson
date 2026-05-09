@@ -4,6 +4,6 @@ jobs:
   generate:
     runs-on: windows-latest
     steps:
-      - run: echo "${CONTEXT}"
+      - run: echo "Hello"
         env:
-          CONTEXT: ${{toJSON(github)}}
+          CONTEXT: ${{contains(github.run_id, '1')}}
