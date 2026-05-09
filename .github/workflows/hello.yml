@@ -1,9 +1,8 @@
 name: Naming
+run-name: Run by @${{github.actor}}
 on: push
 jobs:
   print:
-    name: Super Useful job
     runs-on: windows-latest
     steps:
-      - name: Amaziong Script
-        run: echo "Hello"
+      - run: echo "Hello"
