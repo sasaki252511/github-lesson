@@ -1,8 +1,9 @@
-name: Generate functions
+name: Status check functions
 on: push
 jobs:
-  generate:
+  fail:
     runs-on: windows-latest
     steps:
+      - run: exit 1
       - run: echo "Hello"
-        if: ${{contains(github.run_id, '188')}}
+        if: ${{failure()}}
