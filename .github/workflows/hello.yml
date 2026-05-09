@@ -1,8 +1,13 @@
-name: Naming
+name: GITHUB_OUTPUT
 run-name: Run by @${{github.actor}}
 on: push
 jobs:
-  print:
+  share:
     runs-on: windows-latest
     steps:
-      - run: echo "Hello"
+      - name: github output
+        id: source
+        run: echo "resul=Hello">>"${GITHUB_OUTPUT}"
+      - env:
+          RESULT: ${{steps.source.outputs.result}}
+        run: echo "${RESULT}"
