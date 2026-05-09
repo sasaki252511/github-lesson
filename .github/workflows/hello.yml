@@ -1,14 +1,21 @@
-name: Comment
-run-name: Run by @${{github.actor}}
-on: pull_request
+name: Artifacts
+on: push
 jobs:
-  comment:
+  upload:
     runs-on: windows-latest
-    permissions:
-      pull-requests: write
-      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
-      - env:
-          GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+      - run: date > date.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uploaded
+          path: date.txt
+          retention-days: 7
+  download:
+    runs-on: windows-latest
+    needs: [upload]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: uploaded
+          path: downloaded
+      - run: cat downloaded/date.txt
