@@ -1,11 +1,9 @@
-name: Status check functions
+name: Naming
 on: push
 jobs:
-  skip-or-run:
+  print:
+    name: Super Useful job
     runs-on: windows-latest
     steps:
-      - run: echo "${CONTEXT}"
-        env:
-          CONTEXT: ${{github.actor}}
-        if: ${{github.actor == 'sasaki252511'}}
-      - run: echo "Hello"
+      - name: Amaziong Script
+        run: echo "Hello"
