@@ -2,6 +2,9 @@ name: Status check functions
 on: push
 jobs:
   skip-or-run:
-    if: ${{github.actor == 'sasaki252511'}}
     runs-on: windows-latest
+    run: echo "${CONTEXT}"
+    env:
+      CONTEXT: ${{toJSON(github)}}
+    if: ${{github.actor == 'sasaki252511'}}
     -run: echo "Hello"
