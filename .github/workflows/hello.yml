@@ -2,6 +2,6 @@ name: Status check functions
 on: push
 jobs:
   skip-or-run:
-    if: ${{github.actor == 'octocat'}}
+    if: ${{github.actor == 'main'}}
     runs-on: windows-latest
     -run: echo "Hello"
