@@ -1,14 +1,19 @@
 name: Comment
 run-name: Run by @${{github.actor}}
 on: pull_request
+defaults:
+  run:
+    shell: bash
 jobs:
-  comment:
+  first:
     runs-on: windows-latest
-    permissions:
-      pull-requests: write
-      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - run: gh pr comment ${{ github.event.pull_request.number }} --body "Hello, $env:GITHUB_ACTOR"
-        env:
-          GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+      - run: sleep 10 && echo "First job"
+  second:
+    runs-on: windows-latest
+    steps:
+      - run: sleep 10 && echo "Second job"
+  third:
+    runs-on: windows-latest
+    steps:
+      - run: sleep 10 && echo "Third job"
