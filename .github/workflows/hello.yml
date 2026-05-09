@@ -3,6 +3,9 @@ on: push
 jobs:
   skip-or-run:
     runs-on: windows-latest
-    run: echo "${CONTEXT}"
-    env:
-      CONTEXT: ${{toJSON(github)}}
+    steps:
+      - run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{toJSON(github)}}
+        if: ${{github.actor == 'sasaki252511'}}
+      - run: echo "Hello"
