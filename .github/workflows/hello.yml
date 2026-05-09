@@ -6,5 +6,3 @@ jobs:
     run: echo "${CONTEXT}"
     env:
       CONTEXT: ${{toJSON(github)}}
-    if: ${{github.actor == 'sasaki252511'}}
-    -run: echo "Hello"
